@@ -9,13 +9,16 @@
 static fix  dx=128, dy=128;     // xとyはfix型の変数
 
 // ボールの箱の現在の位置。
-static struct box b;
+//static struct box b;
 
 // ボールの初期位置。
 static fix x=30<<8, y=30<<8;
 
 // ボールの位置とサイズ
 static struct box my_ball = {.x = 30, .y = 30, .width = 5, .height = 5};
+
+static struct box my_wall = {.x = 0, .y = 0, .width = LCD_WIDTH, .height = LCD_HEIGHT};
+
 
 static int key;
 
@@ -39,7 +42,6 @@ struct box *ball_get_box(void) {
 void
 wait(int val) {
         int     i, j;
-        val = val*1000;
         for (i = 0; i < val; i++)
                 for (j = 0; j < val; j++)
                         ;
@@ -52,6 +54,8 @@ ball_step(void){
     key = gba_register(KEY_STATUS);
     switch (game_get_state()) {
         case START:
+            draw_box(&my_wall, 0, 0, COLOR_BLACK);
+            wait(50);
             // ボールの位置，速度を初期状態にし，ボールを表示する．
             x=30<<8, y=30<<8;
             dx=128, dy=128;
@@ -94,10 +98,7 @@ ball_step(void){
 
         case CLEAR:
             draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_BLACK);
-            wait(50);
-            draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_WHITE);
-            wait(50);
-            draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_BLACK);
+
             break;
         }
 }
