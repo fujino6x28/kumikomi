@@ -32,8 +32,8 @@ void game_step(void){
             break;
 
         case CLEAR:
-        if (! (key & KEY_START))
+            if (! (key & KEY_START))
             game_set_state(START);
-        break;
+            break;
   }
 }
