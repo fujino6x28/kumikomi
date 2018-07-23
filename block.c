@@ -35,12 +35,12 @@ block_step(void){
             if(i==0){
                 if (cross( ball_get_box(), &my_block ) ){
                     draw_box( &my_block, my_block.x, my_block.y, COLOR_BLACK);
-                    i+1;
+                    i=i+1;
                     ball_set_dy( ball_get_dy()*(-1) );
                 }
                 if (cross( ball_get_box(), &my_block2 ) ){
                     draw_box( &my_block2, my_block2.x, my_block2.y, COLOR_BLACK);
-                    i+11;
+                    i=i+11;
                     ball_set_dy( ball_get_dy()*(-1) );
                 }
             }
@@ -79,8 +79,8 @@ block_step(void){
             break;
 
         case RESTART:
-            draw_box( &my_block, my_block.x , my_block.y, COLOR_WHITE);
-            draw_box( &my_block2, my_block2.x , my_block2.y, COLOR_WHITE);
+            //draw_box( &my_block, my_block.x , my_block.y, COLOR_WHITE);
+            //draw_box( &my_block2, my_block2.x , my_block2.y, COLOR_WHITE);
             break;
 
         case CLEAR:
