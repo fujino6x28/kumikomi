@@ -18,10 +18,10 @@ delay(hword val){
 }
 
 
-
+void
 main(){
-    hword   *fb = (hword*)VRAM;
-    int     x, y;
+//    hword   *fb = (hword*)VRAM;
+//    int     x, y;
 
 
     // 画面を初期化 (なんかわからんけどこれで動く)

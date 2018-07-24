@@ -18,5 +18,5 @@ ball.o: gba.h box.h ball.h racket.h game.h
 box.o: gba.h box.h
 main.o: gba.h ball.h box.h racket.h game.h block.h
 racket.o: gba.h box.h ball.h racket.h
-game.o: gba.h game.h
+game.o: gba.h game.h box.h
 block.o: gba.h ball.h game.h box.h block.h

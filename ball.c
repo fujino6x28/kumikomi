@@ -19,6 +19,7 @@ static struct box my_ball = {.x = 30, .y = 40, .width = 5, .height = 5};
 
 static struct box my_wall = {.x = 0, .y = 0, .width = LCD_WIDTH, .height = LCD_HEIGHT};
 
+static int start;
 
 static int key;
 
@@ -54,8 +55,11 @@ ball_step(void){
     key = gba_register(KEY_STATUS);
     switch (game_get_state()) {
         case START:
-            draw_box(&my_wall, 0, 0, COLOR_BLACK);
-            wait(50);
+            if(start == 0){
+                draw_box(&my_wall, 0, 0, COLOR_BLACK);
+                start = 1;
+            }
+        //    wait(50);
             // ボールの位置，速度を初期状態にし，ボールを表示する．
             x=30<<8, y=40<<8;
             dx=128, dy=128;
@@ -98,7 +102,7 @@ ball_step(void){
 
         case CLEAR:
             draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_BLACK);
-
+            start=0;
             break;
         }
 }

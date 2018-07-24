@@ -3,24 +3,24 @@
 #include "game.h"
 #include "box.h"
 #include "block.h"
-#include "8x8.til"
+//#include "8x8.til"
 
 // staticな変数の定義
-static struct box my_block1 = {.x = 10, .y = 5, .width = 50, .height = 10};
-static struct box my_block2 = {.x = 70, .y = 5, .width = 50, .height = 10};
-static struct box my_block3 = {.x = 130, .y = 5, .width = 50, .height = 10};
-static struct box my_block4 = {.x = 190, .y = 5, .width = 50, .height = 10};
-static struct box my_block5 = {.x = 10, .y = 25, .width = 50, .height = 10};
-static struct box my_block6 = {.x = 70, .y = 25, .width = 50, .height = 10};
-static struct box my_block7 = {.x = 130, .y = 25, .width = 50, .height = 10};
-static struct box my_block8 = {.x = 190, .y = 25, .width = 50, .height = 10};
+static struct box my_block1 = {.x = 5, .y = 5, .width = 50, .height = 10};
+static struct box my_block2 = {.x = 65, .y = 5, .width = 50, .height = 10};
+static struct box my_block3 = {.x = 125, .y = 5, .width = 50, .height = 10};
+static struct box my_block4 = {.x = 185, .y = 5, .width = 50, .height = 10};
+static struct box my_block5 = {.x = 5, .y = 25, .width = 50, .height = 10};
+static struct box my_block6 = {.x = 65, .y = 25, .width = 50, .height = 10};
+static struct box my_block7 = {.x = 125, .y = 25, .width = 50, .height = 10};
+static struct box my_block8 = {.x = 185, .y = 25, .width = 50, .height = 10};
 
 
 static int num_blocks;
 
 static int i1,i2,i3,i4,i5,i6,i7,i8;
 
-
+/*
 void
 draw_char(hword *ptr, hword color, int code){
     hword *p;
@@ -34,11 +34,11 @@ draw_char(hword *ptr, hword color, int code){
         }
     }
 }
-
+*/
 
 void
 block_step(void){
-    hword   *fb = (hword*)VRAM;
+//    hword   *fb = (hword*)VRAM;
     switch (game_get_state()){
         case START:
             //ブロックを表示する
@@ -137,12 +137,12 @@ block_step(void){
         case CLEAR:
             //CLEARと表示
 
-            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-26, COLOR_WHITE, 'C');
+/*            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-26, COLOR_WHITE, 'C');
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-16, COLOR_WHITE, 'L');
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-6, COLOR_WHITE, 'E');
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2+4, COLOR_WHITE, 'A');
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2+14, COLOR_WHITE, 'R');
-
+*/
             break;
 
     }
