@@ -12,10 +12,10 @@ static fix  dx=128, dy=128;     // xとyはfix型の変数
 //static struct box b;
 
 // ボールの初期位置。
-static fix x=30<<8, y=30<<8;
+static fix x=30<<8, y=40<<8;
 
 // ボールの位置とサイズ
-static struct box my_ball = {.x = 30, .y = 30, .width = 5, .height = 5};
+static struct box my_ball = {.x = 30, .y = 40, .width = 5, .height = 5};
 
 static struct box my_wall = {.x = 0, .y = 0, .width = LCD_WIDTH, .height = LCD_HEIGHT};
 
@@ -57,7 +57,7 @@ ball_step(void){
             draw_box(&my_wall, 0, 0, COLOR_BLACK);
             wait(50);
             // ボールの位置，速度を初期状態にし，ボールを表示する．
-            x=30<<8, y=30<<8;
+            x=30<<8, y=40<<8;
             dx=128, dy=128;
             draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_WHITE);
             break;
@@ -91,7 +91,7 @@ ball_step(void){
         case RESTART:
             // 現在のボールを画面から消し，ボールの位置，速度を初期状態にし，ボールを表示する．
             //draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_BLACK);
-            x=30<<8, y=30<<8;
+            x=30<<8, y=40<<8;
             dx=128, dy=128;
             draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_WHITE);
             break;
