@@ -90,7 +90,7 @@ ball_step(void){
 
         case RESTART:
             // 現在のボールを画面から消し，ボールの位置，速度を初期状態にし，ボールを表示する．
-            //draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_BLACK);
+            draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_BLACK);
             x=30<<8, y=40<<8;
             dx=128, dy=128;
             draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_WHITE);

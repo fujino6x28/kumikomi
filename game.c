@@ -19,6 +19,9 @@ void game_step(void){
 
         case RUNNING:
             //何もしない。
+            //ズル機能
+            if (! (key & KEY_SELECT))
+                game_set_state(CLEAR);
             break;
 
         case DEAD:
