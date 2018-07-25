@@ -1,9 +1,6 @@
 #include "gba.h"
 #include "box.h"
 
-
-
-
 // 四角を表示する。左上が(x,y)でそこからの幅(width)と高さ(height)。
 void
 draw_box(struct box *b, int x, int y, hword color){

@@ -9,10 +9,11 @@ static int i;
 static struct box my_wall = {.x = 40, .y = 60, .width = 150, .height = 30};
 
 enum state game_get_state(void) { return current_state; }
-void game_set_state(enum state new_state) {
+
+void
+game_set_state(enum state new_state) {
   current_state = new_state;
 }
-
 
 void
 draw_char(hword *ptr, hword color, int code){
@@ -28,8 +29,8 @@ draw_char(hword *ptr, hword color, int code){
     }
 }
 
-
-void game_step(void){
+void
+game_step(void){
     key = gba_register(KEY_STATUS);
     hword   *fb = (hword*)VRAM;
     switch (game_get_state()) {
@@ -56,7 +57,7 @@ void game_step(void){
             }
             //何もしない。
 
-            //ズル機能
+            //ズル機能(いちおう開発用)
             if (! (key & KEY_SELECT))
                 game_set_state(CLEAR);
             break;
@@ -72,7 +73,6 @@ void game_step(void){
             break;
 
         case CLEAR:
-
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-26, COLOR_WHITE, 'C');
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-16, COLOR_WHITE, 'L');
             draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-6, COLOR_WHITE, 'E');

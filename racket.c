@@ -4,10 +4,8 @@
 #include "racket.h"
 
 static int x_racket=30; //ラケットの初期位置のx座標をx_racketとし、値を30にする。
-static int key; // これは筐体のキー関係で使うやつ。とりあえず触らんでいい。
+static int key; // これは筐体のキー関係で使うやつ。
 
-//static int dx, dy;            // ラケットの現在の位置
-//static struct box b;          // ボールの箱の現在の位置
 static struct box my_racket = {.x = 30, .y = 135, .width = 40, .height = 5};
 
 
@@ -15,6 +13,10 @@ static struct box my_racket = {.x = 30, .y = 135, .width = 40, .height = 5};
 // ラケットの箱の位置を返す関数
 struct box *racket_get_box(void) {
     return &my_racket;
+}
+
+int racket_x(void){
+    return my_racket.x;
 }
 
 

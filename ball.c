@@ -8,8 +8,6 @@
 
 static fix  dx=128, dy=128;     // xとyはfix型の変数
 
-// ボールの箱の現在の位置。
-//static struct box b;
 
 // ボールの初期位置。
 static fix x=30<<8, y=40<<8;
@@ -25,12 +23,14 @@ static int key;
 
 
  // ボールのy方向の速度を返す関数
-int ball_get_dy(void) {
+int
+ball_get_dy(void) {
     return dy;
 }
 
 // ボールのy方向の速度をセットする関数
-void ball_set_dy(int new_dy) {
+void
+ball_set_dy(int new_dy) {
     dy = new_dy;
 }
 
@@ -38,16 +38,6 @@ void ball_set_dy(int new_dy) {
 struct box *ball_get_box(void) {
     return &my_ball;
 }
-
-// 速度の調整。wait(数字)で、数字が大きいほど速度が遅くなる。
-void
-wait(int val) {
-        int     i, j;
-        for (i = 0; i < val; i++)
-                for (j = 0; j < val; j++)
-                        ;
-}
-
 
 // ボールを1ステップ動かす
 void
@@ -59,7 +49,6 @@ ball_step(void){
                 draw_box(&my_wall, 0, 0, COLOR_BLACK);
                 start = 1;
             }
-        //    wait(50);
             // ボールの位置，速度を初期状態にし，ボールを表示する．
             x=30<<8, y=40<<8;
             dx=128, dy=128;
@@ -74,7 +63,14 @@ ball_step(void){
             if(round_fix(x)>=LCD_WIDTH-5 || round_fix(x)<=0)  {dx = -dx;} //端にぶつかったら反射
             if(round_fix(y)>=LCD_HEIGHT-5 || round_fix(y)<=0) {dy = -dy;} //端にぶつかったら反射
 
-            if(cross( &my_ball, racket_get_box() )/*==1*/) {
+            // ボールがラケットに当たった時
+            if(cross( &my_ball, racket_get_box() )) {
+                if(round_fix(x) < racket_x()+10){
+                    dx=(-128);
+                }
+                if(round_fix(x) > racket_x()+25){
+                    dx=(128);
+                }
                 dy = -dy;
                 y = y+dy*3;
             }
@@ -84,12 +80,11 @@ ball_step(void){
             // ボールが落ちた時
             if (round_fix(y)>=(LCD_HEIGHT-15))
                 game_set_state(DEAD);
+
             break;
 
-
-
         case DEAD:
-            draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_WHITE); //何もしない。
+            draw_box(&my_ball, round_fix(x), round_fix(y), COLOR_WHITE); 
             break;
 
         case RESTART:

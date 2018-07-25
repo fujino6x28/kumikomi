@@ -18,18 +18,14 @@ delay(hword val){
 }
 
 
-void
+int
 main(){
-//    hword   *fb = (hword*)VRAM;
-//    int     x, y;
 
-
-    // 画面を初期化 (なんかわからんけどこれで動く)
+    // 画面を初期化
     /* Initialize LCD Control Register to use Mode 3. */
     gba_register(LCD_CTRL) = LCD_BG2EN | LCD_MODE3;
 
-
-    // タイマーを初期化 (よくわからんがこのままで動くので触らんでいい)
+    // タイマーを初期化
     /* Initialize Timer 0. */
     gba_register(TMR_COUNT0) = 0;
     gba_register(TMR_CTRL0) = TMR_ENABLE + TMR_1024CLOCK;
@@ -42,12 +38,13 @@ main(){
         // ラケットを1ステップ動かす(racket.cに記述)
         racket_step();
 
+        // ブロックの挙動(block.cに記述)
         block_step();
 
         // ゲームの状態の管理(game.cに記述)
         game_step();
 
-
+        // ゲームのstateを見るために画面右下に小さい点を表示しておく(開発用)
         int state = game_get_state();
         int count = 0;
         while(state){
@@ -60,8 +57,7 @@ main(){
             count++;
         }
 
-
-        // delay()で待つ
+        // 速度調整のため
         delay(50);
     }
 }

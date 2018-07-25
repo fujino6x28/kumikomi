@@ -3,7 +3,6 @@
 #include "game.h"
 #include "box.h"
 #include "block.h"
-//#include "8x8.til"
 
 // staticな変数の定義
 static struct box my_block1 = {.x = 5, .y = 5, .width = 50, .height = 10};
@@ -15,26 +14,10 @@ static struct box my_block6 = {.x = 65, .y = 25, .width = 50, .height = 10};
 static struct box my_block7 = {.x = 125, .y = 25, .width = 50, .height = 10};
 static struct box my_block8 = {.x = 185, .y = 25, .width = 50, .height = 10};
 
-
 static int num_blocks;
 
 static int i1,i2,i3,i4,i5,i6,i7,i8;
 
-/*
-void
-draw_char(hword *ptr, hword color, int code){
-    hword *p;
-    int i,j;
-    unsigned char *font = char8x8[code];
-    for (i=0; i<FONT_SIZE; i++){
-        p = ptr + LCD_WIDTH * i;
-        for (j=FONT_SIZE-1; j>=0; j--, p++){
-            if(font[i]&(1<<j))
-                *p = color;
-        }
-    }
-}
-*/
 
 void
 block_step(void){
@@ -55,6 +38,7 @@ block_step(void){
             break;
 
         case RUNNING:
+            // ブロックが破壊されたときの挙動
             if(i1==0){
                 if (cross( ball_get_box(), &my_block1 ) ){
                     draw_box( &my_block1, my_block1.x, my_block1.y, COLOR_BLACK);
@@ -122,9 +106,7 @@ block_step(void){
             if(num_blocks==8){
                 game_set_state(CLEAR);
             }
-
             break;
-
 
         case DEAD:
             // なにもしない
@@ -135,14 +117,7 @@ block_step(void){
             break;
 
         case CLEAR:
-            //CLEARと表示
-
-/*            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-26, COLOR_WHITE, 'C');
-            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-16, COLOR_WHITE, 'L');
-            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2-6, COLOR_WHITE, 'E');
-            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2+4, COLOR_WHITE, 'A');
-            draw_char(fb+(LCD_WIDTH * (LCD_HEIGHT/2)) + LCD_WIDTH/2+14, COLOR_WHITE, 'R');
-*/
+            // なにもしない
             break;
 
     }
